@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Routine Commerciale — 3E</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F6F2;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE6;
+    --text: #1A1916;
+    --text2: #6B6860;
+    --text3: #9E9C96;
+    --border: rgba(26,25,22,0.1);
+    --border2: rgba(26,25,22,0.18);
+    --green-bg: #E8F5E0; --green-text: #2D6A18;
+    --amber-bg: #FEF3DC; --amber-text: #7A4D0A;
+    --blue-bg: #E4EFF9; --blue-text: #1A4F82;
+    --purple-bg: #EDEAF9; --purple-text: #3D2F8A;
+    --orange-bg: #FEF0E4; --orange-text: #7A3D10;
+    --accent: #1A1916;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .layout {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* Header */
+  .topbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+  .brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .clock {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--text2);
+  }
+
+  .day-hero {
+    margin-bottom: 2rem;
+  }
+  .day-date {
+    font-size: 13px;
+    color: var(--text2);
+    margin-bottom: 6px;
+    text-transform: capitalize;
+  }
+  .day-name {
+    font-size: 40px;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .joign-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 99px;
+  }
+  .joign-pill::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .j-high { background: var(--green-bg); color: var(--green-text); }
+  .j-high::before { background: var(--green-text); }
+  .j-mid { background: var(--amber-bg); color: var(--amber-text); }
+  .j-mid::before { background: var(--amber-text); }
+  .j-we { background: var(--surface2); color: var(--text2); }
+  .j-we::before { background: var(--text3); }
+
+  /* Nav */
+  .nav {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    background: var(--surface2);
+    padding: 4px;
+    border-radius: var(--radius);
+  }
+  .nav-btn {
+    flex: 1;
+    min-width: 70px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text2);
+    background: transparent;
+    border: none;
+    padding: 7px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .nav-btn:hover { background: rgba(26,25,22,0.06); color: var(--text); }
+  .nav-btn.active { background: var(--surface); color: var(--text); font-weight: 500; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+
+  /* Missions */
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    margin-top: 2rem;
+  }
+  .section-label:first-child { margin-top: 0; }
+
+  .mission {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 10px;
+    animation: fadeUp 0.25s ease both;
+  }
+  .mission + .mission { animation-delay: 0.06s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .mission-num {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text3);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .mission-title {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .mission-desc {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .mission-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 6px;
+  }
+  .tag-blue { background: var(--blue-bg); color: var(--blue-text); }
+  .tag-purple { background: var(--purple-bg); color: var(--purple-text); }
+  .tag-orange { background: var(--orange-bg); color: var(--orange-text); }
+  .tag-amber { background: var(--amber-bg); color: var(--amber-text); }
+
+  .note-block {
+    background: var(--surface2);
+    border-left: 3px solid var(--border2);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+    animation: fadeUp 0.25s ease 0.1s both;
+  }
+
+  .rule-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin-bottom: 8px;
+    animation: fadeUp 0.2s ease both;
+  }
+  .rule-card-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .rule-item {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.65;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 5px;
+  }
+  .rule-item::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--text3);
+    font-size: 11px;
+    top: 2px;
+  }
+  .rule-item:last-child { margin-bottom: 0; }
+
+  /* Weekend */
+  .weekend {
+    text-align: center;
+    padding: 4rem 1rem;
+    animation: fadeUp 0.3s ease both;
+  }
+  .weekend-line {
+    font-family: 'DM Mono', monospace;
+    font-size: 48px;
+    color: var(--text3);
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+  .weekend-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .weekend-sub {
+    font-size: 14px;
+    color: var(--text2);
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text3);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="topbar">
+    <span class="brand">3E · Routine commerciale</span>
+    <span class="clock" id="clock"></span>
+  </div>
+
+  <div class="day-hero">
+    <p class="day-date" id="dayDate"></p>
+    <p class="day-name" id="dayName"></p>
+    <span class="joign-pill" id="joignBadge"></span>
+  </div>
+
+  <nav class="nav" id="navRow"></nav>
+
+  <div id="content"></div>
+
+  <div class="footer">Eco Ecolo Energie · Process Sales Performant 3E</div>
+</div>
+
+<script>
+const DAYS = [
+  {
+    name: "Lundi",
+    joign: "high",
+    missions: [
+      { num: "Mission principale", title: "Appeler les nouveaux leads", desc: "Lancer la semaine avec de nouveaux potentiels clients. Objectif : qualifier un maximum de nouveaux contacts pour alimenter le pipeline de la semaine.", tag: "tag-blue", tagLabel: "Nouveaux leads" }
+    ],
+    note: "Une fois la mission principale faite, rappeler ce qui semble prioritaire ou des nouveaux leads supplémentaires."
+  },
+  {
+    name: "Mardi",
+    joign: "high",
+    missions: [
+      { num: "Mission principale", title: "Recontacter les prospects +5 000 m²", desc: "Focus sur les gros clients. Meilleure journée de joignabilité — réserver les créneaux du matin pour ces appels à fort enjeu.", tag: "tag-orange", tagLabel: "À recontacter · +5 000 m²" }
+    ],
+    note: "Une fois la mission principale faite, rappeler ce qui semble prioritaire ou des à recontacter sans filtre de taille."
+  },
+  {
+    name: "Mercredi",
+    joign: "mid",
+    missions: [
+      { num: "Mission principale", title: "Appeler les nouveaux leads", desc: "Mi-semaine : alimenter le pipeline avec de nouveaux potentiels. Joignabilité moyenne — compenser avec un volume d'appels plus élevé.", tag: "tag-blue", tagLabel: "Nouveaux leads" }
+    ],
+    note: "Une fois la mission principale faite, rappeler ce qui semble prioritaire ou des nouveaux leads supplémentaires."
+  },
+  {
+    name: "Jeudi",
+    joign: "high",
+    missions: [
+      { num: "Mission prioritaire 1", title: "Recontacter les prospects 1 000 à 5 000 m²", desc: "Focus sur les clients moyens. Bonne journée de joignabilité — attaquer ce segment en premier.", tag: "tag-amber", tagLabel: "À recontacter · 1 000–5 000 m²" },
+      { num: "Mission prioritaire 2", title: "Recontacter les prospects -1 000 m²", desc: "Focus sur les petits clients moyens. À traiter après le premier segment.", tag: "tag-purple", tagLabel: "À recontacter · -1 000 m²" }
+    ],
+    note: "Une fois les missions faites, rappeler ce qui semble prioritaire ou des à recontacter sans filtre de taille."
+  },
+  {
+    name: "Vendredi",
+    joign: "mid",
+    missions: [
+      { num: "Mission principale", title: "Appeler les nouveaux leads", desc: "Fin de semaine : préparer le pipeline de la semaine suivante. Poser les rappels agenda pour lundi et valider toutes les notes de la semaine.", tag: "tag-blue", tagLabel: "Nouveaux leads" }
+    ],
+    note: "Avant de finir : vérifier que tous les rappels de la semaine prochaine sont bien dans l'agenda avec les notes prospect à jour."
+  },
+  { name: "Samedi", joign: "we", missions: [], note: "" },
+  { name: "Dimanche", joign: "we", missions: [], note: "" }
+];
+
+const PERMANENTS = [
+  { title: "Au fil de l'eau", items: ["Rappels prospects : tout noter dans l'agenda + se remettre dans les notes avant d'appeler", "Validation éligibilité ou intérêt : confirmer et noter dans l'agenda", "Prospects lointains : reporter dans Airtable + agenda avec date estimée"] },
+  { title: "2 fois par mois", items: ["Prospects avec mail envoyé : faire une relance téléphonique + mail de suivi"] },
+  { title: "1 fois par mois", items: ["Prospects pas joignables depuis 1 mois : retenter le contact"] },
+  { title: "Long terme", items: ["Non intéressé (a déjà un prestataire) : retel 6 mois avant fin contrat", "Non intéressé : retel 1 fois par an", "Dans tous les cas : reporter dans Airtable + agenda"] }
+];
+
+const joignLabels = { high: "Meilleure joignabilité", mid: "Moyenne joignabilité", we: "Week-end" };
+const joignClass = { high: "j-high", mid: "j-mid", we: "j-we" };
+
+let currentDay = new Date().getDay();
+currentDay = currentDay === 0 ? 6 : currentDay - 1;
+
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+function renderDay(d) {
+  const day = DAYS[d];
+  const now = new Date();
+  document.getElementById('dayDate').textContent = now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  document.getElementById('dayName').textContent = day.name;
+  const badge = document.getElementById('joignBadge');
+  badge.textContent = joignLabels[day.joign];
+  badge.className = 'joign-pill ' + joignClass[day.joign];
+
+  document.querySelectorAll('.nav-btn').forEach((b, i) => b.classList.toggle('active', i === d));
+
+  const content = document.getElementById('content');
+
+  if (day.joign === 'we') {
+    content.innerHTML = `<div class="weekend"><div class="weekend-line">///</div><p class="weekend-title">Pas de prospection aujourd'hui</p><p class="weekend-sub">Profite de ton week-end. Lundi, les nouveaux leads t'attendent.</p></div>`;
+    return;
+  }
+
+  let html = '<p class="section-label">Missions du jour</p>';
+  day.missions.forEach(m => {
+    html += `<div class="mission"><p class="mission-num">${m.num}</p><p class="mission-title">${m.title}</p><p class="mission-desc">${m.desc}</p><span class="mission-tag ${m.tag}">${m.tagLabel}</span></div>`;
+  });
+  if (day.note) html += `<div class="note-block">${day.note}</div>`;
+
+  html += '<p class="section-label">Règles permanentes</p>';
+  PERMANENTS.forEach((r, ri) => {
+    html += `<div class="rule-card" style="animation-delay:${ri * 0.05}s"><p class="rule-card-title">${r.title}</p>`;
+    r.items.forEach(i => { html += `<p class="rule-item">${i}</p>`; });
+    html += '</div>';
+  });
+
+  content.innerHTML = html;
+}
+
+function buildNav() {
+  const nav = document.getElementById('navRow');
+  DAYS.forEach((d, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === currentDay ? ' active' : '');
+    btn.textContent = d.name;
+    btn.onclick = () => renderDay(i);
+    nav.appendChild(btn);
+  });
+}
+
+buildNav();
+renderDay(currentDay);
+</script>
+</body>
+</html>
